@@ -41,7 +41,7 @@ var timeArray = [
 
 timeArray.forEach(function (timeArray, index) {
   var timeHour = timeArray.hour;
-  var timeSlot = index + timeHour + timeArray.text;
+  var timeSlot =  timeHour + timeArray.text;
 //   timeSheetDisplay.appendChild(newDiv);
 
 //   newDiv.appendChild(childDiv);
@@ -50,8 +50,8 @@ timeArray.forEach(function (timeArray, index) {
 //   childDiv.textContent = [i] + 9; 
 //   newDiv.appendChild(textArea);
 //   newDiv.appendChild(divButton);
-  
-  $(".timeBlock").append(timeSlot);
+  $('.list-group').append('<li>' + timeSlot + '</li>'); 
+//   $(".timeBlock").append(timeSlot);
 });
 
 // add background colors to each time slot and make the slot colors respond ina  sensitive manner to current time of day
