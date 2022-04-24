@@ -50,7 +50,7 @@ timeArray.forEach(function (timeArray, index) {
 //   childDiv.textContent = [i] + 9; 
 //   newDiv.appendChild(textArea);
 //   newDiv.appendChild(divButton);
-  $('.list-group').append('<li>' + timeSlot + '</li>'); 
+  $('.list-group').append('<li>' + timeSlot + '</li>' + divButton ); 
 //   $(".timeBlock").append(timeSlot);
 });
 
