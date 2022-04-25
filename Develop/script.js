@@ -18,6 +18,21 @@ $(".saveBtn").on("click", function()  {
     localStorage.setItem(hour, text); 
     console.log(localStorage); 
 })
+function checkTheTime () {
+    var present = moment().hour(); 
+    for (var i = 0; i < textEl.length; i++) {
+
+    if (textEl[i].id < present) {
+        textEl[i].classList.add("past");
+
+    } else if (textEl[i].id > present) {
+        textEl[i].classList.add("future");
+    } else {
+        textEl[i].classList.add("present");
+    }
+}
+}
+}) 
 // get gets the saved text by individual id from local storage, which was saved in the localStorage.setItem(hour, text); 
 
 $("#hour-9 .description").val(localStorage.getItem("hour-9"));
@@ -32,18 +47,5 @@ $("#hour-5 .description").val(localStorage.getItem("hour-5"));
 
 
 
-var checkTime = functon () {
-    var :variable = moment().hour(); 
-    for (var i = 0; i < textEl.length; i++) {
 
-    if (textEl[i].id < present) {
-        textEl[i].classList.add("past");
-
-    } else if (textEl[i].id > present) {
-        textEl[i].classList.add("future");
-    } else {
-        textEl[i].classList.add("present");
-    }
-}
-});
-checkTheTime(); 
+checkTheTime (); 
