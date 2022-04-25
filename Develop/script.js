@@ -2,62 +2,48 @@
 var timeSheetDisplay = document.getElementById("timeSheet");
 
 const timeText = document.getElementById("currentDay");
-
+var textEl = document.querySelector(".description"); 
 var currentTime = moment();
 
 timeText.innerHTML = currentTime.format("dddd, MMMM Do YYYY, LTS (L)");
+$(document).ready(function () {
+//  Set up local storage
+var storageLocker = []; 
+$(".saveBtn").on("click", function()  {
+    // in this case the "this" selects all of the text area elements in the html
+    let text = $(this).siblings(".description").val(); 
+    // makes sure the button clicked is appended to each row. there are 9 rows of buttons and each save icon must only save for its own row. 
+    let hour = $(this).parent().attr("id"); 
+// set item gets set to be called with getItem 
+    localStorage.setItem(hour, text); 
+    console.log(localStorage); 
+})
+// get gets the saved text by individual id from local storage, which was saved in the localStorage.setItem(hour, text); 
 
-var newDiv = document.createElement("div");
-newDiv.setAttribute("class", "row");
-var childDiv = document.createElement("div");
-childDiv.setAttribute("class", "time-block");
-var textArea = document.createElement("textarea");
+$("#hour-9 .description").val(localStorage.getItem("hour-9"));
+$("#hour-10 .description").val(localStorage.getItem("hour-10")); 
+$("#hour-11 .description").val(localStorage.getItem("hour-11")); 
+$("#hour-12 .description").val(localStorage.getItem("hour-12")); 
+$("#hour-1 .description").val(localStorage.getItem("hour-1")); 
+$("#hour-2 .description").val(localStorage.getItem("hour-2")); 
+$("#hour-3 .description").val(localStorage.getItem("hour-3")); 
+$("#hour-4 .description").val(localStorage.getItem("hour-4")); 
+$("#hour-5 .description").val(localStorage.getItem("hour-5"));  
 
-var divButton = document.createElement("button");
 
-timeSheetDisplay.appendChild(newDiv);
 
-newDiv.appendChild(childDiv);
-newDiv.appendChild(textArea);
-newDiv.appendChild(divButton);
+var checkTime = functon () {
+    var :variable = moment().hour(); 
+    for (var i = 0; i < textEl.length; i++) {
 
-// Set up an array which has times (to dynamically create list elements using JSON) and an empty space for text entry
+    if (textEl[i].id < present) {
+        textEl[i].classList.add("past");
 
-var timeArray = [
-  { hour: "9 A.M.", text: "" },
-  { hour: "10 A.M.", text: "" },
-  { hour: "11 A.M.", text: "" },
-  { hour: "12 P.M.", text: "" },
-  { hour: "1 P.M.", text: "" },
-  { hour: "2 P.M.", text: "" },
-  { hour: "3 P.M.", text: "" },
-  { hour: "4 P.M.", text: "" },
-  { hour: "5 P.M.", text: "" },
-];
-
-// time|text display|save button
-// create div, make each element .. div | text area | button/div
-// visual rows
-
-timeArray.forEach(function (timeArray, index) {
-  var timeHour = timeArray.hour;
-  var timeSlot =  timeHour + timeArray.text;
-//   timeSheetDisplay.appendChild(newDiv);
-
-//   newDiv.appendChild(childDiv);
-//   childDiv.classList.add("hour col-2")
-//   newDiv.classList.add("row")
-//   childDiv.textContent = [i] + 9; 
-//   newDiv.appendChild(textArea);
-//   newDiv.appendChild(divButton);
-  $('.list-group').append('<li>' + timeSlot + '</li>' + divButton ); 
-//   $(".timeBlock").append(timeSlot);
+    } else if (textEl[i].id > present) {
+        textEl[i].classList.add("future");
+    } else {
+        textEl[i].classList.add("present");
+    }
+}
 });
-
-// add background colors to each time slot and make the slot colors respond ina  sensitive manner to current time of day
-
-// set up local storage
-
-// save text entries
-
-// choose what will be put into local storage
+checkTheTime(); 
